@@ -40,6 +40,14 @@ A non-clinical mental health support web app with a browser chat UI, voice input
 
 4. Open `http://localhost:3000` in your browser.
 
+## Vercel deployment
+
+1. Import the repository into Vercel.
+2. Add the environment variable `GEMINI_API_KEY` in the Vercel project settings.
+3. Redeploy after saving the environment variable.
+
+The deployed app serves the frontend as static files and uses `api/chat.js` as the serverless backend for `/api/chat`.
+
 ## Browser notes
 
 - Voice input relies on `SpeechRecognition` / `webkitSpeechRecognition`, which works best in Chrome or Edge.
