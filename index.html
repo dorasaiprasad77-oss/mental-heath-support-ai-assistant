@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Mental Health Support Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">MH</div>
+      <div>
+        <h1>AI Mental Health Support</h1>
+        <p class="subtitle">Non-clinical emotional support | not a substitute for professional care</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-label="Assistant chat">
+      <div class="panel-header">
+        <h2>Chat with the assistant</h2>
+        <div class="pill" id="micStatus" role="status" aria-live="polite">Mic: idle</div>
+      </div>
+
+      <div class="disclaimer" role="note">
+        <strong>Important:</strong> This assistant provides general emotional support and coping ideas. It is <u>not</u> a medical device, diagnosis tool, or emergency service.
+        <div class="disclaimer-actions">
+          <button type="button" class="link-btn" id="showDisclaimersBtn">View safety & privacy</button>
+        </div>
+      </div>
+
+      <div class="chat" id="chat" aria-live="polite" aria-relevant="additions"></div>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <div class="row">
+          <button type="button" class="btn" id="toggleVoiceBtn" title="Speak responses aloud">
+            Voice: On
+          </button>
+
+          <button type="button" class="btn secondary" id="listenBtn" title="Start or stop listening">
+            Listen
+          </button>
+        </div>
+
+        <div class="row input-row">
+          <textarea
+            id="userInput"
+            rows="2"
+            placeholder="Type what's on your mind..."
+            aria-label="Message input"
+          ></textarea>
+          <button class="btn primary" type="submit" id="sendBtn">Send</button>
+        </div>
+
+        <div class="hint">
+          Tip: You can say things like "I feel anxious", "I can't sleep", or "I'm overwhelmed".
+        </div>
+      </form>
+    </section>
+
+    <aside class="panel side" aria-label="Safety panel">
+      <div class="panel-header">
+        <h2>Safety & privacy</h2>
+      </div>
+
+      <div class="card">
+        <h3>When you need urgent help</h3>
+        <p class="small">
+          If you are in danger, or thinking about harming yourself or others, please seek immediate help.
+          Contact your local emergency number or a crisis hotline in your country.
+          If you're in the U.S., you can call or text <strong>988</strong>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Privacy and data use</h3>
+        <ul class="small list">
+          <li>No sign-in required.</li>
+          <li>Messages are stored in your browser session and can be cleared or exported.</li>
+          <li>Chat messages are sent to the app backend to generate replies.</li>
+          <li>When AI replies are enabled, prompts may be forwarded to the Gemini API.</li>
+          <li>Voice features use your browser's speech services.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Stress detection (heuristics)</h3>
+        <p class="small">
+          The assistant looks for common stress or anxiety phrases such as "panic", "can't breathe", and "overwhelmed".
+          If risk-like language is detected, it will prioritize safety resources and supportive questions.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Conversation controls</h3>
+        <div class="row">
+          <button type="button" class="btn secondary" id="clearBtn">Clear chat</button>
+          <button type="button" class="btn secondary" id="downloadBtn">Export text</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Safety & privacy details</h3>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Close">X</button>
+      </div>
+
+      <div class="modal-body">
+        <h4>Non-clinical support</h4>
+        <p class="small">
+          The assistant cannot provide diagnoses, prescribe medication, or guarantee outcomes.
+          It aims to offer coping strategies, reflection, and suggestions for reaching professionals.
+        </p>
+
+        <h4>Mandatory safety behavior</h4>
+        <p class="small">
+          If messages include crisis-like keywords such as "suicidal", "kill myself", "end my life", "hurt myself",
+          "no reason to live", or explicit imminent threats, the assistant will:
+        </p>
+        <ul class="small list">
+          <li>Stop regular support responses and provide urgent help guidance.</li>
+          <li>Encourage contacting local emergency or crisis services or a trusted person.</li>
+          <li>Offer grounding steps while help is sought.</li>
+        </ul>
+
+        <h4>Privacy</h4>
+        <p class="small">
+          This app sends chat messages to its backend and may forward prompts to the Gemini API to generate replies.
+          Conversation history is stored in your browser session unless you export it. Microphone input and speech synthesis
+          use browser-provided speech services, which may process audio depending on browser and network configuration.
+        </p>
+
+        <h4>Use responsibly</h4>
+        <p class="small">
+          If you need medical help, contact a licensed clinician or local services.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn primary" id="modalOkBtn">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
